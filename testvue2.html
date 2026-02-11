@@ -1,0 +1,158 @@
+<html>
+<head>
+    <title>Vue 2 练习</title>
+    <meta charset="UTF-8">
+    <!-- 引入 Vue 2 -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        body {
+            padding: 20px;
+            font-family: Arial, sans-serif;
+        }
+        .container {
+            max-width: 600px;
+        }
+        .section {
+            border: 1px solid #ccc;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        .user-card {
+            background: #f0f0f0;
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 4px;
+        }
+        button {
+            background: #42b983;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        button:hover {
+            background: #35a372;
+        }
+        input {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            margin: 5px 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Vue 的根容器 -->
+    <div id="app" class="container">
+        <h1>Vue 2 入门练习</h1>
+
+        <!-- 1. 数据显示 {{ }} -->
+        <div class="section">
+            <h3>1. 数据显示</h3>
+            <p>消息: {{ message }}</p>
+            <p>计数: {{ count }}</p>
+            <button @click="count++">点击+1</button>
+        </div>
+
+        <!-- 2. v-model 双向绑定 -->
+        <div class="section">
+            <h3>2. 双向绑定 v-model</h3>
+            <input v-model="name" type="text" placeholder="输入你的名字" />
+            <p>你输入的是: {{ name }}</p>
+        </div>
+
+        <!-- 3. 方法调用 @click -->
+        <div class="section">
+            <h3>3. 点击事件 @click</h3>
+            <button @click="sayHello">打招呼</button>
+            <button @click="changeMessage">修改消息</button>
+        </div>
+
+        <!-- 4. v-if 条件渲染 -->
+        <div class="section">
+            <h3>4. 条件显示 v-if</h3>
+            <button @click="showBox = !showBox">切换显示</button>
+            <div v-if="showBox" style="background: yellow; padding: 10px; margin-top: 10px;">
+                这是一个可以显示/隐藏的盒子
+            </div>
+        </div>
+
+        <!-- 5. v-for 列表渲染 -->
+        <div class="section">
+            <h3>5. 列表渲染 v-for</h3>
+            <input v-model="newUser" type="text" placeholder="输入用户名" />
+            <button @click="addUser">添加用户</button>
+            <div v-for="(user, index) in users" :key="index" class="user-card">
+                {{ index + 1 }}. {{ user }}
+                <button @click="deleteUser(index)" style="background: red; float: right;">删除</button>
+            </div>
+        </div>
+
+        <!-- 6. 计算属性 -->
+        <div class="section">
+            <h3>6. 计算属性 computed</h3>
+            <p>用户总数: {{ userCount }}</p>
+            <p>用户列表: {{ userListText }}</p>
+        </div>
+    </div>
+
+    <script>
+        // Vue 2 的语法
+        new Vue({
+            el: '#app',  // 挂载点
+
+            // data: 定义数据（Vue 2 是对象，不是函数）
+            data: {
+                message: '欢迎学习 Vue 2！',
+                count: 0,
+                name: '',
+                showBox: true,
+                users: ['张三', '李四', '王五'],
+                newUser: ''
+            },
+
+            // methods: 定义方法
+            methods: {
+                sayHello: function() {
+                    if(this.name){
+                        alert('你好, ' + this.name + '!');
+                    } else {
+                        alert('请先输入名字');
+                    }
+                },
+                changeMessage: function() {
+                    this.message = '消息已修改：' + new Date().toLocaleTimeString();
+                },
+                addUser: function() {
+                    if(this.newUser){
+                        this.users.push(this.newUser);
+                        this.newUser = '';  // 清空输入框
+                    }
+                },
+                deleteUser: function(index) {
+                    this.users.splice(index, 1);
+                }
+            },
+
+            // computed: 计算属性
+            computed: {
+                userCount: function() {
+                    return this.users.length;
+                },
+                userListText: function() {
+                    return this.users.join(', ');
+                }
+            },
+
+            // mounted: 生命周期（类似Android的onCreate）
+            mounted: function() {
+                console.log('Vue 实例已挂载');
+                console.log('初始用户列表:', this.users);
+            }
+        });
+    </script>
+</body>
+</html>
