@@ -1,0 +1,93 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>this is title</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+        <style>
+            .parent{
+                background: rgb(0, 128, 0, 0.1);
+            }
+            .content{
+                color: blue;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <div class="parent">
+                <h6 class="content">数据测试</h6>
+                <p>计数：{{ count}}</p>
+                <button @click="count++">click 数字++</button>
+            </div>
+            <div class="parent">
+                <p>test v-model</p>
+                <input v-model="name" placeholder="输入name">
+                <p>input name = {{name}}</p>
+            </div>
+            <div class="parent">
+                <p>this is click</p>
+                <button @click="sayHi">Say hi</button>
+            </div>
+            <div class="parent">
+                <p>条件显示</p>
+                <button @click="showBox = !showBox">切换显示</button>
+                <div v-if="showBox" style="background: rgb(255, 255, 0, 0.3);">
+                    这是可以显示隐藏的盒子
+                </div>
+            </div>
+            <div class="parent">
+                <p>test add/deelte</p>
+                <input v-model="inputUser" type="text" placeholder="input name">
+                <button @click="addUser">添加用户</button>
+                <div v-for="(user,index) in users" :key="user">
+                    {{index + 1}}.{{user}}
+                    <button @click="deleteUser(index)">删除</button>
+                </div>
+            </div>
+            <div class="parent">
+                <p>计算</p>
+                <p>用户总数: {{userCount}} </p>
+                <p>用户列表: {{userList}} </p>
+            </div>
+        </div>
+    </body>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                count : 1,
+                name : '',
+                showBox : true,
+                inputUser:'',
+                users:["can","yang","hao"]
+            },
+            methods:{
+                sayHi(){
+                    alert('click sayHi to'+this.name)
+                },
+                addUser(){
+                    if(this.inputUser){
+                        this.users.push(this.inputUser),
+                        this.inputUser = ''
+                    }
+                },
+                deleteUser(index){
+                    this.users.splice(index,1)
+                }
+            },
+            computed:{
+                userCount(){
+                    return this.users.length;
+                },
+                userList(){
+                    return this.users.join(',')
+                }
+            },
+            mounted(){
+                console.log('Vue实例已挂在');
+                console.log('初始化用户列表:'+this.users);
+            }
+        })
+    </script>
+</html>
