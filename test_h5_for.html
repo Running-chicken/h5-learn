@@ -1,7 +1,7 @@
 <html>
     <body>
         <h6 id="title1">大标题</h6>
-        <input type="text" placeholder="输入name"/>
+        <input id="name" type="text" placeholder="输入name"/>
         <button id="btn1">点击</button>
         <div id="content">内容数据</div>
         <script>
@@ -13,7 +13,7 @@
                 console.log('this fruits is '+fruit);
             }
             fruits.forEach(function(fruit){
-                console.log('this fruits is '+fruit)}
+                console.log('this fruits forEach '+fruit)}
             );
             const user = {
                 name:'cc',
@@ -26,11 +26,13 @@
 
             const btn1 = document.querySelector('#btn1');
             const title1 = document.querySelector('#title1');
-            const content = document.querySelector('content');
+            const content = document.querySelector('#content');
+            const name = document.querySelector('#name');
 
             btn1.addEventListener('click', function(){
                 title1.innerText = '点击后'
                 content.innerHTML = 'content修改'
+                name.value = ''
             })
         </script>
     </body>

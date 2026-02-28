@@ -23,13 +23,20 @@
 </head>
 <body>
     <h1>标题标题</h1>
-    <button id="btn1" class="button_two">立即参与</button>
+    <button id="btn1" class="button_one">立即参与</button>
     <div>
         <input id="name" type="text" placeholder="输入姓名" />
-        <button id="btn2" class="button_one">按钮</button>
+        <button id="btn2" class="button_two">按钮</button>
     </div>
     <script>
         const name = document.querySelector('#name');
+        const btn1 =document.querySelector('#btn1');
+        btn1.addEventListener('click',function(){
+            const changeName = name.value;
+            alert('change name is '+changeName)
+        });
+
+
         const btn2 = document.querySelector('#btn2');
         btn2.addEventListener('click',function(){
             const inputName = name.value

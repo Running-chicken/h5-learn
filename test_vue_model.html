@@ -1,0 +1,114 @@
+<html>
+<head>
+    <title>Vue v-model 双向绑定</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <style>
+        body {
+            font-family: Arial;
+            padding: 20px;
+            max-width: 600px;
+        }
+        .box {
+            border: 2px solid #42b983;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 5px;
+        }
+        input, textarea, select {
+            font-size: 16px;
+            padding: 5px;
+            margin: 5px 0;
+        }
+        .result {
+            background: #f0f0f0;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <h1>Vue v-model 双向绑定练习</h1>
+
+        <!-- 示例1: 文本输入 -->
+        <div class="box">
+            <h3>1. 文本输入框</h3>
+            <input type="text" v-model="username" placeholder="输入你的名字">
+            <div class="result">你好，{{username}}！</div>
+        </div>
+
+        <!-- 示例2: 多行文本 -->
+        <div class="box">
+            <h3>2. 多行文本框</h3>
+            <textarea v-model="description" rows="3" style="width: 100%"></textarea>
+            <div class="result">字数：{{description.length}}</div>
+        </div>
+
+        <!-- 示例3: 复选框 -->
+        <div class="box">
+            <h3>3. 复选框（单个）</h3>
+            <label>
+                <input type="checkbox" v-model="agree">
+                我同意用户协议
+            </label>
+            <div class="result">状态：{{agree ? '已同意' : '未同意'}}</div>
+        </div>
+
+        <!-- 示例4: 复选框（多选）-->
+        <div class="box">
+            <h3>4. 复选框（多选）</h3>
+            <label><input type="checkbox" v-model="hobbies" value="篮球"> 篮球</label>
+            <label><input type="checkbox" v-model="hobbies" value="足球"> 足球</label>
+            <label><input type="checkbox" v-model="hobbies" value="游泳"> 游泳</label>
+            <div class="result">你的爱好：{{hobbies.join('、')}}</div>
+        </div>
+
+        <!-- 示例5: 单选按钮 -->
+        <div class="box">
+            <h3>5. 单选按钮</h3>
+            <label><input type="radio" v-model="gender" value="男"> 男</label>
+            <label><input type="radio" v-model="gender" value="女"> 女</label>
+            <div class="result">性别：{{gender}}</div>
+        </div>
+
+        <!-- 示例6: 下拉选择 -->
+        <div class="box">
+            <h3>6. 下拉选择框</h3>
+            <select v-model="city">
+                <option value="">请选择城市</option>
+                <option value="北京">北京</option>
+                <option value="上海">上海</option>
+                <option value="广州">广州</option>
+                <option value="深圳">深圳</option>
+            </select>
+            <div class="result">你选择的城市：{{city || '未选择'}}</div>
+        </div>
+
+        <!-- 综合展示 -->
+        <div class="box" style="background: #e7f7ef;">
+            <h3>📋 个人信息汇总</h3>
+            <p>姓名：{{username || '未填写'}}</p>
+            <p>性别：{{gender || '未选择'}}</p>
+            <p>城市：{{city || '未选择'}}</p>
+            <p>爱好：{{hobbies.length > 0 ? hobbies.join('、') : '未选择'}}</p>
+            <p>简介：{{description || '未填写'}}</p>
+            <p>协议：{{agree ? '已同意' : '未同意'}}</p>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el: "#app",
+            data: {
+                username: "",
+                description: "",
+                agree: false,
+                hobbies: [],
+                gender: "",
+                city: ""
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,26 @@
+<html>
+    <head>
+        <title>this is vue</title>
+        <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    </head>
+    <body>
+        <div id="app">
+            <h3>hello hi</h3>
+            <h3>{{message}}</h3>
+            <button @click="clickEvent">click</button>
+        </div>
+        <script>
+            new Vue({
+                el: '#app',
+                data : {
+                    message:'this is message'
+                },
+                methods:{
+                    clickEvent(){
+                        this.message = 'change message'
+                    }
+                }
+            })
+        </script>
+    </body>
+</html>

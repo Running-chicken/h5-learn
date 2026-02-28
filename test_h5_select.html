@@ -1,0 +1,32 @@
+<html>
+    <head>
+        <title>hao ge</title>
+        <style>
+            .button_style1 {
+                background: black;
+                color: red;
+            }
+        </style>
+    </head>
+    <body>
+        <h3>this is hao ge</title>
+        <div>
+            <button id="btn_gender" class="button_style1">gender</button>
+        </div>
+        <div>
+            <input type="radio" name="gender" value="man"/> man
+            <input type="radio" name="gender" value="women"/> women
+        </div>
+        <script>
+            const btnGender = document.querySelector('#btn_gender');
+            btnGender.addEventListener('click', function(){
+                const gender = document.querySelector('input[name="gender"]:checked');
+                if(gender){
+                    alert('this gender is '+gender.value)
+                }else{
+                    alert('this gender is null')
+                }
+            });
+        </script>
+    </body>
+</html>
