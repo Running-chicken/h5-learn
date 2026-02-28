@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <title>Document</title>
+    <style>
+        .tabStyle{
+            color: blue;
+        }
+    </style>
+</head>
+<body>
+    <div id="app">
+        <div class="tabStyle">
+            <button v-for="tab in tabs" :key="tab.id" @click="currentTab = tab.id">
+                {{tab.name}}
+            </button>
+        </div>
+        <div>
+            <div v-if="currentTab === 'home'">
+                <h6>首页</h6>
+                <p>首页内容</p>
+            </div>
+            <div v-if="currentTab === 'activity'">
+                <h6>Activity Tab</h6>
+                <p>活动内容</p>
+            </div>
+            <div v-if="currentTab === 'party'">
+                <h6>Party Tab</h6>
+                <p>语音房内容</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        new Vue({
+            el:"#app",
+            data:{
+                currentTab : "home",
+                tabs:[
+                    {id:"home",name:"首页"},
+                    {id:"activity",name:"活动"},
+                    {id:"party",name:"派对"}
+                ]
+            }
+        })
+    </script>
+</body>
+</html>
